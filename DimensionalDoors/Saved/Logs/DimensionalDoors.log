@@ -1020,3 +1020,54 @@ Script Stack (0 frames):
 [2019.10.28-01.03.52:956][347]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness0640C05F4991987BDE278AB37DB5A7BD.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness.umap'
 [2019.10.28-01.03.53:009][347]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Nothingness_BuiltData" FILE="../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness_BuiltData.uasset" SILENT=true
 [2019.10.28-01.03.53:050][347]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness_BuiltData8911587748BEED78DAA0B88D2364E0A4.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness_BuiltData.uasset'
+[2019.10.28-01.09.29:246][782]LogWorld: UWorld::CleanupWorld for World_13, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-01.09.30:035][844]LogSlate: Window 'MotionControllerPawn' being destroyed
+[2019.10.28-01.09.30:049][844]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2019.10.28-01.09.30:049][844]LogWorld: UWorld::CleanupWorld for World_12, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-01.09.31:559][ 13]LogAssetEditorManager: Opening Asset editor for Blueprint /Game/VirtualRealityBP/Blueprints/MotionControllerPawn.MotionControllerPawn
+[2019.10.28-01.09.36:490][364]LogSlate: Window 'MotionControllerPawn' being destroyed
+[2019.10.28-01.09.36:496][364]LogSlate: Window 'MotionControllerPawn' being destroyed
+[2019.10.28-01.09.36:496][364]LogWorld: UWorld::CleanupWorld for World_14, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-01.09.44:864][229]LogAIModule: Creating AISystem for world Slime
+[2019.10.28-01.09.44:871][229]LogAssetEditorManager: Opening Asset editor for World /Game/Maps/Slime.Slime
+[2019.10.28-01.09.44:910][229]LogUObjectHash: Compacting FUObjectHashTables data took   4.04ms
+[2019.10.28-01.09.44:911][229]Cmd: MAP LOAD FILE="../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Slime.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2019.10.28-01.09.44:911][229]LightingResults: New page: Lighting Build
+[2019.10.28-01.09.44:912][229]LoadErrors: New page: Loading map: Slime.umap
+[2019.10.28-01.09.44:912][229]LogWorld: UWorld::CleanupWorld for Nothingness, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-01.09.44:912][229]MapCheck: New page: Map Check
+[2019.10.28-01.09.44:912][229]LightingResults: New page: Lighting Build
+[2019.10.28-01.09.44:943][229]LogUObjectHash: Compacting FUObjectHashTables data took   3.87ms
+[2019.10.28-01.09.44:948][229]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2019.10.28-01.09.44:978][229]LogUObjectHash: Compacting FUObjectHashTables data took   3.24ms
+[2019.10.28-01.09.45:018][229]Cmd: MAP CHECKDEP NOCLEARLOG
+[2019.10.28-01.09.45:018][229]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.131ms to complete.
+[2019.10.28-01.09.45:018][229]LogFileHelpers: Loading map 'Slime' took 0.108
+[2019.10.28-01.09.46:935][449]LogAssetEditorManager: Opening Asset editor for Blueprint /Game/VirtualRealityBP/Blueprints/MotionControllerPawn.MotionControllerPawn
+[2019.10.28-01.09.49:378][601]LogSlate: Window 'MotionControllerPawn' being destroyed
+[2019.10.28-01.09.49:381][601]LogSlate: Window 'MotionControllerPawn' being destroyed
+[2019.10.28-01.09.49:382][601]LogWorld: UWorld::CleanupWorld for World_15, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-01.09.51:141][797]LogAIModule: Creating AISystem for world SpawnMap
+[2019.10.28-01.09.51:148][797]LogAssetEditorManager: Opening Asset editor for World /Game/Maps/SpawnMap.SpawnMap
+[2019.10.28-01.09.51:180][797]LogUObjectHash: Compacting FUObjectHashTables data took   2.73ms
+[2019.10.28-01.09.51:181][797]Cmd: MAP LOAD FILE="../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/SpawnMap.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2019.10.28-01.09.51:181][797]LightingResults: New page: Lighting Build
+[2019.10.28-01.09.51:182][797]LoadErrors: New page: Loading map: SpawnMap.umap
+[2019.10.28-01.09.51:182][797]LogWorld: UWorld::CleanupWorld for Slime, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-01.09.51:182][797]MapCheck: New page: Map Check
+[2019.10.28-01.09.51:182][797]LightingResults: New page: Lighting Build
+[2019.10.28-01.09.51:217][797]LogUObjectHash: Compacting FUObjectHashTables data took   3.17ms
+[2019.10.28-01.09.51:222][797]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2019.10.28-01.09.51:254][797]LogUObjectHash: Compacting FUObjectHashTables data took   2.71ms
+[2019.10.28-01.09.51:291][797]Cmd: MAP CHECKDEP NOCLEARLOG
+[2019.10.28-01.09.51:291][797]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.12ms to complete.
+[2019.10.28-01.09.51:291][797]LogFileHelpers: Loading map 'SpawnMap' took 0.111
+[2019.10.28-01.09.54:302][146]LogAssetEditorManager: Opening Asset editor for Blueprint /Game/VirtualRealityBP/Blueprints/MotionControllerPawn.MotionControllerPawn
+[2019.10.28-01.09.57:256][336]LogSlate: Window 'MotionControllerPawn' being destroyed
+[2019.10.28-01.09.57:261][336]LogSlate: Window 'MotionControllerPawn' being destroyed
+[2019.10.28-01.09.57:262][336]LogWorld: UWorld::CleanupWorld for World_16, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-01.10.18:909][412]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/SpawnMap" FILE="../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/SpawnMap.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2019.10.28-01.10.18:942][412]LogUObjectHash: Compacting FUObjectHashTables data took   0.95ms
+[2019.10.28-01.10.19:217][412]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/SpawnMap6C56E2974AFAB23E9AF464B684BA3EEF.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/SpawnMap.umap'
+[2019.10.28-01.10.19:270][412]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/SpawnMap_BuiltData" FILE="../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/SpawnMap_BuiltData.uasset" SILENT=true
+[2019.10.28-01.10.19:325][412]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/SpawnMap_BuiltData04C157B549D06A8BAB1ED3B20DDC220C.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/SpawnMap_BuiltData.uasset'
