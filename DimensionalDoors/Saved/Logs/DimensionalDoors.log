@@ -927,3 +927,9 @@ Make sure 'Door' has been compiled for  Get Levels
 [2019.10.28-00.28.27:299][669]LogWorld: UWorld::CleanupWorld for World_9, bSessionEnded=true, bCleanupResources=true
 [2019.10.28-00.28.27:382][669]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
 [2019.10.28-00.28.27:382][669]LogWorld: UWorld::CleanupWorld for World_10, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-00.33.27:800][771]LogAssetEditorManager: Opening Asset editor for Blueprint /Game/VirtualRealityBP/Blueprints/MotionControllerPawn.MotionControllerPawn
+[2019.10.28-00.33.49:994][295]LogAssetEditorManager: Opening Asset editor for Blueprint /Game/VirtualRealityBP/Blueprints/BP_MotionController.BP_MotionController
+[2019.10.28-00.34.39:278][511]BlueprintLog: New page: Compile BP_MotionController
+[2019.10.28-00.34.39:670][511]LogUObjectHash: Compacting FUObjectHashTables data took   6.22ms
+[2019.10.28-00.34.40:662][554]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/BP_MotionController407398EB410123EA10BA74A069CC5E35.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/VirtualRealityBP/Blueprints/BP_MotionController.uasset'
+[2019.10.28-00.34.42:168][659]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/BP_MotionControllerCEDBF6044111B86CD55CCC8581897EAC.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/VirtualRealityBP/Blueprints/BP_MotionController.uasset'
