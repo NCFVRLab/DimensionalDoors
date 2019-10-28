@@ -915,3 +915,15 @@ Make sure 'Door' has been compiled for  Get Levels
 [2019.10.28-00.17.03:728][252]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness3F10E4F8422662DFD2A28A860F3D28EB.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness.umap'
 [2019.10.28-00.17.03:781][252]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Nothingness_BuiltData" FILE="../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness_BuiltData.uasset" SILENT=true
 [2019.10.28-00.17.03:821][252]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness_BuiltData4D91186A405059A059993E91E653AC5C.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness_BuiltData.uasset'
+[2019.10.28-00.18.20:431][ 39]LogSlate: Only BGRA pngs, bmps or icos are supported in by External Image Picker
+[2019.10.28-00.26.25:713][836]LogSlate: Window 'Project Settings' being destroyed
+[2019.10.28-00.26.25:717][836]LogSlate: Window 'Project Settings' being destroyed
+[2019.10.28-00.27.40:338][959]LogWorld: UWorld::CleanupWorld for World_8, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-00.28.17:222][894]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/BP_MotionController443C08B940F961286D9B4B9E0D340A63.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/VirtualRealityBP/Blueprints/BP_MotionController.uasset'
+[2019.10.28-00.28.27:192][669]LogSlate: Window 'HMDLocomotionPawn' being destroyed
+[2019.10.28-00.28.27:195][669]LogSlate: Window 'HMDLocomotionPawn' being destroyed
+[2019.10.28-00.28.27:224][669]LogWorld: UWorld::CleanupWorld for World_7, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-00.28.27:299][669]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2019.10.28-00.28.27:299][669]LogWorld: UWorld::CleanupWorld for World_9, bSessionEnded=true, bCleanupResources=true
+[2019.10.28-00.28.27:382][669]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2019.10.28-00.28.27:382][669]LogWorld: UWorld::CleanupWorld for World_10, bSessionEnded=true, bCleanupResources=true
