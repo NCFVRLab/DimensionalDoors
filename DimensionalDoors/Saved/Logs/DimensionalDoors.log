@@ -941,3 +941,82 @@ Make sure 'Door' has been compiled for  Get Levels
 [2019.10.28-00.35.26:037][680]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness51D266CE4110E639176745A8C4C27A32.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness.umap'
 [2019.10.28-00.35.26:108][680]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Nothingness_BuiltData" FILE="../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness_BuiltData.uasset" SILENT=true
 [2019.10.28-00.35.26:156][680]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness_BuiltDataAD35FF8F483CC9F5344155B5C6A12CD1.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness_BuiltData.uasset'
+[2019.10.28-00.36.36:077][452]LogUObjectArray: Warning: Other object in slot
+[2019.10.28-00.36.36:078][452]LogOutputDevice: Warning: 
+
+Script Stack (0 frames):
+
+[2019.10.28-00.36.36:580][452]LogStats: FPlatformStackWalk::StackWalkAndDump -  0.502 s
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: === Handled ensure: ===
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: 
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: Ensure condition failed: false [File:D:/Build/++UE4/Sync/Engine/Source/Editor/UnrealEd/Private/Kismet2/KismetDebugUtilities.cpp] [Line: 1154]
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: Error: Invalid (but non-null) property associated with pin; cannot get variable value
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: Stack: 
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb830d5279 UE4Editor-UnrealEd.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb828f7fca UE4Editor-UnrealEd.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb8290622f UE4Editor-UnrealEd.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb76836c91 UE4Editor-BlueprintGraph.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb757e4dca UE4Editor-GraphEditor.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb7579e057 UE4Editor-GraphEditor.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb87d5d644 UE4Editor-Slate.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb87f4c533 UE4Editor-Slate.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb87da922b UE4Editor-Slate.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb87d85738 UE4Editor-Slate.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffb87d79a1e UE4Editor-Slate.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffbbd9c4c4c UE4Editor-ApplicationCore.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffbbd9b26df UE4Editor-ApplicationCore.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffbbd9c7340 UE4Editor-ApplicationCore.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffbbd9aedd0 UE4Editor-ApplicationCore.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffbc808ca66 USER32.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffbc808c582 USER32.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ffbbd9c88e9 UE4Editor-ApplicationCore.dll!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ff755d46980 UE4Editor.exe!UnknownFunction []
+[2019.10.28-00.36.36:581][452]LogOutputDevice: Error: [Callstack] 0x00007ff755d5a91c UE4Editor.exe!UnknownFunction []
+[2019.10.28-00.36.36:582][452]LogOutputDevice: Error: [Callstack] 0x00007ff755d5a9fa UE4Editor.exe!UnknownFunction []
+[2019.10.28-00.36.36:582][452]LogOutputDevice: Error: [Callstack] 0x00007ff755d6b92c UE4Editor.exe!UnknownFunction []
+[2019.10.28-00.36.36:582][452]LogOutputDevice: Error: [Callstack] 0x00007ff755d6e60e UE4Editor.exe!UnknownFunction []
+[2019.10.28-00.36.36:582][452]LogOutputDevice: Error: [Callstack] 0x00007ffbc8f77974 KERNEL32.DLL!UnknownFunction []
+[2019.10.28-00.36.36:582][452]LogOutputDevice: Error: [Callstack] 0x00007ffbcaeca271 ntdll.dll!UnknownFunction []
+[2019.10.28-00.36.36:582][452]LogOutputDevice: Error: 
+[2019.10.28-00.36.36:592][452]LogStats:                SubmitErrorReport -  0.000 s
+[2019.10.28-00.36.37:366][452]LogStats:                    SendNewReport -  0.773 s
+[2019.10.28-00.36.37:366][452]LogStats:             FDebug::EnsureFailed -  1.288 s
+[2019.10.28-00.36.37:366][452]LogUObjectArray: Warning: Other object in slot
+[2019.10.28-00.36.37:369][452]LogUObjectArray: Warning: Other object in slot
+[2019.10.28-00.37.28:472][ 37]LogSlate: Only BGRA pngs, bmps or icos are supported in by External Image Picker
+[2019.10.28-00.38.20:837][554]LogSlate: Window 'Project Settings' being destroyed
+[2019.10.28-00.38.20:840][554]LogSlate: Window 'Project Settings' being destroyed
+[2019.10.28-00.41.25:587][596]LogSlate: Only BGRA pngs, bmps or icos are supported in by External Image Picker
+[2019.10.28-00.45.27:742][646]LogSlate: Window 'Project Settings' being destroyed
+[2019.10.28-00.45.27:745][646]LogSlate: Window 'Project Settings' being destroyed
+[2019.10.28-00.46.38:899][143]LogUObjectHash: Compacting FUObjectHashTables data took   4.97ms
+[2019.10.28-00.46.39:218][143]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness_Auto29F75407946AF64A8959243B96F56D326.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Autosaves/Game/Maps/Nothingness_Auto2.umap'
+[2019.10.28-00.46.39:226][143]LogFileHelpers: Editor autosave (incl. sublevels) for '/Game/Maps/Nothingness' took 0.364
+[2019.10.28-00.46.39:226][143]LogFileHelpers: Editor autosave (incl. sublevels) for all levels took 0.364
+[2019.10.28-00.46.39:228][143]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/VirtualRealityBP/Blueprints/MotionControllerPawn] ([1] browsable assets)...
+[2019.10.28-00.46.39:229][143]OBJ SavePackage: Finished generating thumbnails for package [/Game/VirtualRealityBP/Blueprints/MotionControllerPawn]
+[2019.10.28-00.46.39:361][143]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/MotionControllerPawn_Auto2B5C214E7463B1522F6D05AA7FF045892.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Autosaves/Game/VirtualRealityBP/Blueprints/MotionControllerPawn_Auto2.uasset'
+[2019.10.28-00.46.39:363][143]LogFileHelpers: Auto-saving content packages took 0.135
+[2019.10.28-00.56.39:476][439]LogUObjectHash: Compacting FUObjectHashTables data took   4.91ms
+[2019.10.28-00.56.39:785][439]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness_Auto3A6A8FAB84F9660FF9C0F48BA24CEF4DD.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Autosaves/Game/Maps/Nothingness_Auto3.umap'
+[2019.10.28-00.56.39:790][439]LogFileHelpers: Editor autosave (incl. sublevels) for '/Game/Maps/Nothingness' took 0.354
+[2019.10.28-00.56.39:790][439]LogFileHelpers: Editor autosave (incl. sublevels) for all levels took 0.354
+[2019.10.28-00.56.39:793][439]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/VirtualRealityBP/Blueprints/BP_MotionController] ([1] browsable assets)...
+[2019.10.28-00.56.39:816][439]OBJ SavePackage:     Rendered thumbnail for [Blueprint /Game/VirtualRealityBP/Blueprints/BP_MotionController.BP_MotionController]
+[2019.10.28-00.56.39:816][439]OBJ SavePackage: Finished generating thumbnails for package [/Game/VirtualRealityBP/Blueprints/BP_MotionController]
+[2019.10.28-00.56.40:049][439]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/BP_MotionController_Auto3A0E484634006FCB7FC9F319224D9028A.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Autosaves/Game/VirtualRealityBP/Blueprints/BP_MotionController_Auto3.uasset'
+[2019.10.28-00.56.40:052][439]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/VirtualRealityBP/Blueprints/MotionControllerPawn] ([1] browsable assets)...
+[2019.10.28-00.56.40:052][439]OBJ SavePackage: Finished generating thumbnails for package [/Game/VirtualRealityBP/Blueprints/MotionControllerPawn]
+[2019.10.28-00.56.40:160][439]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/MotionControllerPawn_Auto3DB88754542AD0BB56499EC823FCD00C7.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Autosaves/Game/VirtualRealityBP/Blueprints/MotionControllerPawn_Auto3.uasset'
+[2019.10.28-00.56.40:161][439]LogFileHelpers: Auto-saving content packages took 0.370
+[2019.10.28-01.03.19:522][545]BlueprintLog: New page: Compile MotionControllerPawn
+[2019.10.28-01.03.19:813][545]LogUObjectHash: Compacting FUObjectHashTables data took   4.90ms
+[2019.10.28-01.03.21:016][624]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/MotionControllerPawn1B5F72C049D7FD1F181967A4D1AF7963.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/VirtualRealityBP/Blueprints/MotionControllerPawn.uasset'
+[2019.10.28-01.03.22:065][699]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/MotionControllerPawn136919D345C7D10184E190A701EF0894.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/VirtualRealityBP/Blueprints/MotionControllerPawn.uasset'
+[2019.10.28-01.03.44:338][654]BlueprintLog: New page: Compile BP_MotionController
+[2019.10.28-01.03.44:687][654]LogUObjectHash: Compacting FUObjectHashTables data took   4.43ms
+[2019.10.28-01.03.45:742][707]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/BP_MotionControllerDC11E8174DAC2C5B4D16D7A52F45BD7C.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/VirtualRealityBP/Blueprints/BP_MotionController.uasset'
+[2019.10.28-01.03.52:677][347]LogUObjectHash: Compacting FUObjectHashTables data took   4.70ms
+[2019.10.28-01.03.52:956][347]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness0640C05F4991987BDE278AB37DB5A7BD.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness.umap'
+[2019.10.28-01.03.53:009][347]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/Nothingness_BuiltData" FILE="../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness_BuiltData.uasset" SILENT=true
+[2019.10.28-01.03.53:050][347]LogSavePackage: Moving '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Saved/Nothingness_BuiltData8911587748BEED78DAA0B88D2364E0A4.tmp' to '../../../../../../Users/maddo/VR Stuff/DimensionalDoors/DimensionalDoors/Content/Maps/Nothingness_BuiltData.uasset'
