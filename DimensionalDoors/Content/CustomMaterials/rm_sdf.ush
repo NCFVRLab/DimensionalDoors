@@ -1,0 +1,597 @@
+#pragma once
+
+//const float r = 1.0f;
+//const float g = 0.0f;
+//const float b = 0.0f;
+float3 rayOrigin;
+float3 rayDirection;
+float3 rayUp;
+
+//const
+const float maxDist = 5000.0f;
+const float minDist = 0.00001f;
+const int maxSteps = 1000;
+
+#define saturate(x) clamp(x, 0.0, 1.0)
+#define PI 3.14159265359
+#define TAU (2*PI)
+#define PIH (PI/2.0)
+#define PHI (sqrt(5)*0.5 + 0.5)
+
+
+
+// in_cam_pos
+// in_cam_dir
+// in_screen_size
+// in_frag_coords
+
+struct RM_SDF
+{	
+    //////////////////////////////////////
+
+    float3 hash3( float n ) { return frac(sin(float3(n,n+1.0,n+2.0))*43758.5453123); }    
+
+    float sdPlane(in float3 p)
+    {
+        return p.y;
+    }
+
+    float sdSphere(in float3 p, float s)
+    {
+        return length(p) - s;
+    }
+
+    float sdTorus(in float3 p, in float2 t)
+    {
+        return length(float2(length(p.xz) - t.x, p.y)) - t.y;
+    }
+
+    float sdCube(float3 p)
+    {
+        return max(length(max(abs(p) - float3(1.0f, 1.0f, 1.0f), 0.0)), length(p) - 1.35);
+    }
+
+    float sdCapsule( float3 p, float3 a, float3 b, float r )
+    {
+        float3 pa = p - a, ba = b - a;
+        float h = clamp( dot(pa,ba)/dot(ba,ba), 0.0, 1.0 );
+        return length( pa - ba*h ) - r;
+    }
+
+    float udBox( float3 p, float3 b )
+    {
+        return length(max(abs(p)-b,0.0));
+    }
+
+    float udRoundBox( float3 p, float3 b, float r )
+    {
+        return length(max(abs(p)-b,0.0))-r;
+    }
+
+    float sdBox( float3 p, float3 b )
+    {
+        float3 d = abs(p) - b;
+        return min(max(d.x,max(d.y,d.z)),0.0) + length(max(d,0.0));
+    }
+
+    float dot2( in float3 v ) { return dot(v,v); }
+    float udQuad( float3 p, float3 a, float3 b, float3 c, float3 d )
+    {
+        float3 ba = b - a; float3 pa = p - a;
+        float3 cb = c - b; float3 pb = p - b;
+        float3 dc = d - c; float3 pc = p - c;
+        float3 ad = a - d; float3 pd = p - d;
+        float3 nor = cross( ba, ad );
+
+        return sqrt(
+        (sign(dot(cross(ba,nor),pa)) +
+            sign(dot(cross(cb,nor),pb)) +
+            sign(dot(cross(dc,nor),pc)) +
+            sign(dot(cross(ad,nor),pd))<3.0)
+            ?
+            min( min( min(
+            dot2(ba*clamp(dot(ba,pa)/dot2(ba),0.0,1.0)-pa),
+            dot2(cb*clamp(dot(cb,pb)/dot2(cb),0.0,1.0)-pb) ),
+            dot2(dc*clamp(dot(dc,pc)/dot2(dc),0.0,1.0)-pc) ),
+            dot2(ad*clamp(dot(ad,pd)/dot2(ad),0.0,1.0)-pd) )
+            :
+            dot(nor,pa)*dot(nor,pa)/dot2(nor) );
+    }
+
+    float2 opUnion(float2 d1, float2 d2)
+    {
+        return d1.x < d2.x ? d1 : d2;
+    }
+
+    float2 opDif(float2 d1, float2 d2)
+    {
+        return d1.x > -d2.x ? d1 : float2(-d2.x, d2.y);
+    }
+
+    float2 opIsec(float2 d1, float2 d2)
+    {
+        return d1.x > d2.x ? d1 : d2;
+    }
+
+    float2 fOpUnionRound(float2 a, float2 b, float2 r)
+    {
+        float2 u = max(float2(r.x - a.x, r.x - b.x), float2(0.0f, 0.0f));
+        float2 minP = a.x < b.x ? a : b;
+        return r.x > minP.x ? float2(r.x - length(u), r.y) : float2(minP.x - length(u), minP.y);
+    }
+
+    float2 fOpUnionSoft(float2 a, float2 b, float r)
+    {
+        float e = max(r - abs(a.x - b.x), 0);
+        return a.x < b.x ? float2(a.x - e*e*0.25/r, a.y) : float2(b.x - e*e*0.25/r, b.y);
+    }
+
+    float fBlob(float3 p)
+    {
+        p = abs(p);
+        if (p.x < max(p.y, p.z)) p = p.yzx;
+        if (p.x < max(p.y, p.z)) p = p.yzx;
+        float b = max(max(max(
+                dot(p, normalize(float3(1, 1, 1))),
+                dot(p.xz, normalize(float2(PHI+1, 1)))),
+                dot(p.yx, normalize(float2(1, PHI)))),
+                dot(p.xz, normalize(float2(1, PHI))));
+        float l = length(p);
+        return l - 1.5 - 0.2 * (1.5 / 2)* cos(min(sqrt(1.01 - b / l)*(PI / 0.25), PI));
+    }
+
+    float sdTriPrism( float3 p, float2 h )
+    {
+        float3 q = abs(p);
+        return max(q.z-h.y,max(q.x*0.866025+p.y*0.5,-p.y)-h.x*0.5);
+    }
+
+    float sdHexPrism( float3 p, float2 h )
+    {
+        float3 q = abs(p);
+        return max(q.z-h.y,max((q.x*0.866025+q.y*0.5),q.y)-h.x);
+    }
+
+    float3x3 rotateX(float theta)
+    {
+        float c = cos(theta);
+        float s = sin(theta);
+        return float3x3(
+            float3(1, 0, 0),
+            float3(0, c, -s),
+            float3(0, s, c)
+        );
+    }
+
+    float3x3 rotateY(float theta)
+    {
+        float c = cos(theta);
+        float s = sin(theta);
+        return float3x3(
+            float3(c, 0, s),
+            float3(0, 1, 0),
+            float3(-s, 0, c)
+        );
+    }
+
+    float3x3 rotateZ(float theta)
+    {
+        float c = cos(theta);
+        float s = sin(theta);
+        return float3x3(
+            float3(c, -s, 0),
+            float3(s, c, 0),
+            float3(0, 0, 1)
+        );
+    }
+
+    float3 pMod3(inout float3 p, float3 size)
+    {
+        float3 c = floor((p + size*0.5)/size);
+        p = fmod(p + size*0.5, size) - size*0.5;
+        return c;
+    }
+
+    float fPlane(float3 p, float3 n, float distanceFromOrigin)
+    {
+        return dot(p, n) + distanceFromOrigin;
+    }    
+
+    float dirBox(float3 p, float3 a, float3 b, float3 n, float s, float h)
+    {
+        float3 ba = b - a;
+        float dl = length(ba);
+        ba = normalize(ba);
+
+        float3 ns = cross(ba, n);
+
+        float d = dot(p-a, ba)-dl;
+        d = max(d, dot(b-p, ba)-dl);
+
+        d = max(d, dot(p-a, ns)-s);
+        d = max(d, dot(b-p, ns)-s);
+
+        d = max(d, dot(p-a, n)-h);
+        d = max(d, dot(b-p, n)-h);
+
+        return d;
+    }
+
+    float fOpUnionChamfer(float a, float b, float r)
+    {
+        return min(min(a, b), (a - r + b)*sqrt(0.5));
+    }
+
+    float fOpUnionRound(float a, float b, float r) {
+        float2 u = max(float2(r - a,r - b), float2(0.0f, 0.0f));
+        return max(r, min (a, b)) - length(u);
+    }
+
+    float fOpTongue(float a, float b, float ra, float rb) {
+        return min(a, max(a - ra, abs(b) - rb));
+    }
+
+    float2 scene(in float3 p)
+    {
+        float2 scene = float2(100000.0f, 0.0f);
+        //scene = opUnion(scene, float2(sdPlane(p), 1.0f));
+
+
+    // float2 fOpUnionRound(float2 a, float2 b, float2 r)
+    // float2 fOpUnionSoft(float2 a, float2 b, float r)   
+
+
+
+
+
+        float fsr = 400.0f;
+        float speed22 = 3.1f + cos(in_global_timer/20.0)*2.0f;
+        scene = fOpUnionSoft(scene, float2(sdSphere(p+float3(cos(in_global_timer/speed22)*fsr*1.5, -450, sin(in_global_timer/speed22)*fsr), 200.0f), 2.0f), 300.0f);
+        scene = fOpUnionSoft(scene, float2(sdSphere(p+float3(cos(in_global_timer/speed22*2.0)*fsr, -450+sin(in_global_timer/speed22)*50.0, sin(in_global_timer/3.0f*2.0)*fsr), 150.0f), 3.0f), 300.0f);
+        scene = fOpUnionSoft(scene, float2(sdSphere(p+float3(cos(in_global_timer/speed22*3.0)*fsr, -450+sin(in_global_timer/speed22)*30.0, sin(in_global_timer/3.0f*3.0)*fsr), 100.0f), 4.0f), 300.0f);
+        scene = fOpUnionSoft(scene, float2(sdSphere(p+float3(cos(in_global_timer/speed22*4.0)*fsr*1.3, -450+sin(in_global_timer/speed22)*60.0, sin(in_global_timer/3.0f*3.0)*1.3*fsr), 50.0f), 5.0f), 300.0f);
+
+
+        
+        
+        scene = fOpUnionSoft(scene, float2(dirBox(p, float3(-50,0,0), float3(50,0,0), float3(0,1,0), 150.0f, 1000.0f), 6.0f), 300.0f);
+
+        
+        
+
+        
+       
+        // scene = opUnion(scene, float2(dirBox(p, float3(-20,0,0), float3(20,0,0), float3(0, 1, 0), 10, 5), 7.0f));
+        // float val = 0.7f + 0.1f/100.0f;
+        // scene.x = scene.x + ( sin(val*p.x)*sin(val*p.y)*sin(val*p.z) );
+
+        return scene;
+    }    
+
+    float shadow(in float3 origin, in float3 direction)
+    {
+        float hit = 1.0;
+        float t = 0.02;
+
+        for (int i = 0; i < 1000; i++)
+        {
+            float h = scene(origin + direction * t).x;
+
+            if (h < minDist) return 0.0;
+            t += h;
+            hit = min(hit, 10.0 * h / t);
+            if (t >= 2.5) break;
+        }
+
+        return clamp(hit, 0.0, 1.0);
+    }
+
+    float2 traceRay(in float3 origin, in float3 direction)
+    {
+        float material = -1.0;
+
+        float depth = 0.02f;
+        for (int i = 0; i < maxSteps; i++)
+        {
+            float2 hit = scene(origin + direction * depth);
+            if (hit.x < minDist || depth > maxDist)
+                break;
+
+            depth += hit.x;
+            material = hit.y;
+        }
+
+        if (depth > maxDist)
+        {
+            material = -1.0;        
+        }
+
+        return float2(depth, material);
+    }
+
+    float pow5(float x)
+    {
+        float x2 = x * x;
+        return x2 * x2 * x;
+    }
+
+    float D_GGX(float linearRoughness, float NoH, const float3 h)
+    {
+        float oneMinusNoHSquared = 1.0 - NoH * NoH;
+        float a = NoH * linearRoughness;
+        float k = linearRoughness / (oneMinusNoHSquared + a * a);
+        float d = k * k * (1.0 / PI);
+        return d;
+    }
+
+    float V_SmithGGXCorrelated(float linearRoughness, float NoV, float NoL)
+    {
+        float a2 = linearRoughness * linearRoughness;
+        float GGXV = NoL * sqrt((NoV - a2 * NoV) * NoV + a2);
+        float GGXL = NoV * sqrt((NoL - a2 * NoL) * NoL + a2);
+        return 0.5 / (GGXV + GGXL);
+    }
+
+    float3 F_Schlick(const float3 f0, float VoH)
+    {    
+        return f0 + (float3(1.0f, 1.0f, 1.0f) - f0) * pow5(1.0 - VoH);
+    }
+
+    float F_Schlick(float f0, float f90, float VoH)
+    {
+        return f0 + (f90 - f0) * pow5(1.0 - VoH);
+    }
+
+    float Fd_Burley(float linearRoughness, float NoV, float NoL, float LoH)
+    {    
+        float f90 = 0.5 + 2.0 * linearRoughness * LoH * LoH;
+        float lightScatter = F_Schlick(1.0, f90, NoL);
+        float viewScatter  = F_Schlick(1.0, f90, NoV);
+        return lightScatter * viewScatter * (1.0 / PI);
+    }
+
+    float Fd_Lambert()
+    {
+        return 1.0 / PI;
+    }
+
+    float3 Irradiance_SphericalHarmonics(const float3 n)
+    {    
+        return max(
+                float3( 0.754554516862612,  0.748542953903366,  0.790921515418539)
+            + float3(-0.083856548007422,  0.092533500963210,  0.322764661032516) * (n.y)
+            + float3( 0.308152705331738,  0.366796330467391,  0.466698181299906) * (n.z)
+            + float3(-0.188884931542396, -0.277402551592231, -0.377844212327557) * (n.x)
+            , 0.0);
+    }
+
+    float2 PrefilteredDFG_Karis(float roughness, float NoV)
+    {    
+        const float4 c0 = float4(-1.0, -0.0275, -0.572,  0.022);
+        const float4 c1 = float4( 1.0,  0.0425,  1.040, -0.040);
+
+        float4 r = roughness * c0 + c1;
+        float a004 = min(r.x * r.x, exp2(-9.28 * NoV)) * r.x + r.y;
+
+        return float2(-1.04, 1.04) * a004 + r.zw;
+    }
+
+    float3 Tonemap_ACES(const float3 x)
+    {    
+        const float a = 2.51;
+        const float b = 0.03;
+        const float c = 2.43;
+        const float d = 0.59;
+        const float e = 0.14;
+        return (x * (a * x + b)) / (x * (c * x + d) + e);
+    }
+
+    float3 OECF_sRGBFast(const float3 linear_f)
+    {
+        float f = 1.0f / 2.2f;
+        return pow(linear_f, float3(f,f,f));
+    }
+
+    float3 normal(in float3 position)
+    {
+        float3 epsilon = float3(0.001, 0.0, 0.0);
+        float3 n = float3(
+                scene(position + epsilon.xyy).x - scene(position - epsilon.xyy).x,
+                scene(position + epsilon.yxy).x - scene(position - epsilon.yxy).x,
+                scene(position + epsilon.yyx).x - scene(position - epsilon.yyx).x);
+        return normalize(n);    
+    }
+
+    float3 render(in float3 origin, in float3 direction, out float distance)
+    {    
+        float3 color = float3(0.65, 0.85, 1.0) + direction.y * 0.72;
+    
+        float2 hit = traceRay(origin, direction);    
+
+        distance = hit.x;
+        float material = hit.y;
+        
+        if (material > 0.0)
+        {
+            float3 position = origin + distance * direction;
+
+            float3 v = normalize(-direction);
+            float3 n = normal(position);
+            float3 l = normalize(float3(0.6, 0.7, -0.7));
+            float3 h = normalize(v + l);
+            float3 r = normalize(reflect(direction, n));
+
+            float NoV = abs(dot(n, v)) + 1e-5;
+            float NoL = saturate(dot(n, l));
+            float NoH = saturate(dot(n, h));
+            float LoH = saturate(dot(l, h));
+
+            float3 baseColor = float3(0.0f, 0.0f, 0.0f);
+            float roughness = 0.0;
+            float metallic = 0.0;
+
+            float intensity = 2.0;
+            float indirectIntensity = 0.64;
+
+            if(int(material) == 1)
+            {            
+                float f = fmod(floor(6.0 * position.z) + floor(6.0 * position.x), 2.0);
+                baseColor = 0.4 + f * float3(0.6f, 0.6f, 0.6f);
+                roughness = 0.1;
+            }else if(int(material) == 2)
+            {         
+                baseColor = float3(0.0, 0.4, 1.0);
+                roughness = 0.2;
+            }
+            else if(int(material) == 3)
+            {         
+                baseColor = float3(0.0, 1.0, 0.0);
+                roughness = 0.1;
+            }
+            else if(int(material) == 4)
+            {         
+                baseColor = float3(1.0, 0.0, 0.0);
+                roughness = 0.1;
+            }
+            else if(int(material) == 5)
+            {         
+                baseColor = float3(1.0, 1.0, 0.0);
+                roughness = 0.1;
+            }
+            else if(int(material) == 6)
+            {         
+                baseColor = float3(1.0, 0.3, 1.0);
+                roughness = 0.1;
+            }
+            else if(int(material) == 7)
+            {         
+                baseColor = float3(0.5, 0.5, 0.5);
+                roughness = 0.1;
+            }
+
+            float linearRoughness = roughness * roughness;
+            float3 diffuseColor = (1.0 - metallic) * baseColor.rgb;
+            float3 f0 = 0.04 * (1.0 - metallic) + baseColor.rgb * metallic;
+
+            float attenuation = shadow(position, l);
+            
+            float D = D_GGX(linearRoughness, NoH, h);
+            float V = V_SmithGGXCorrelated(linearRoughness, NoV, NoL);
+            float3  F = F_Schlick(f0, LoH);
+            float3 Fr = (D * V) * F;
+            
+            float3 Fd = diffuseColor * Fd_Burley(linearRoughness, NoV, NoL, LoH);
+
+            color = Fd + Fr;
+
+            color *= (intensity * attenuation * NoL) * float3(0.98, 0.92, 0.89);
+            
+            float3 indirectDiffuse = Irradiance_SphericalHarmonics(n) * Fd_Lambert();
+
+            float2 indirectHit = traceRay(position, r);
+            float3 indirectSpecular = float3(0.65, 0.85, 1.0) + r.y * 0.72;
+            if (indirectHit.y > 0.0)
+            {
+                if(int(indirectHit.y) == 1)
+                {
+                    float3 indirectPosition = position + indirectHit.x * r;                
+                    float f = fmod(floor(6.0 * indirectPosition.z) + floor(6.0 * indirectPosition.x), 2.0);
+                    indirectSpecular = 0.4 + f * float3(0.6f, 0.6f, 0.6f);
+                }else if (int(indirectHit.y) == 2)
+                {                
+                    indirectSpecular = float3(0.0, 0.4, 1.0);
+                }
+                else if (int(indirectHit.y) == 3)
+                {
+                    indirectSpecular = float3(0.0, 1.0, 0.0);
+                }
+                else if (int(indirectHit.y) == 4)
+                {
+                    indirectSpecular = float3(1.0, 0.0, 0.0);
+                }
+                else if (int(indirectHit.y) == 5)
+                {
+                    indirectSpecular = float3(1.0, 1.0, 0.0);
+                }
+                else if (int(indirectHit.y) == 6)
+                {
+                    indirectSpecular = float3(1.0, 0.3, 1.0);
+                }
+                else if (int(indirectHit.y) == 7)
+                {
+                    indirectSpecular = float3(0.5, 0.5, 0.5);
+                }
+            }
+            
+            float2 dfg = PrefilteredDFG_Karis(roughness, NoV);
+            float3 specularColor = f0 * dfg.x + dfg.y;
+            float3 ibl = diffuseColor * indirectDiffuse + indirectSpecular * specularColor;
+
+            color += ibl * indirectIntensity;
+        }
+
+        return color;
+    }    
+
+    float3x3 setCamera(in float3 origin, in float3 target, float rotation)
+    {
+        float3 forward = normalize(target - origin);
+        float3 orientation = float3(sin(rotation), cos(rotation), 0.0);
+        float3 left = normalize(cross(forward, orientation));
+        float3 up = normalize(cross(left, forward));
+        return float3x3(left, up, forward);
+    }
+
+    // float ao(float3 p, float3 n)
+    // {
+    //     float dist = aoDist;
+    //     float occ = 1.0;
+    //     for (int i = 0; i < aoIter; ++i)
+    //     {
+    //         occ = min(occ, scene(p + dist * n).x / dist);
+    //         dist *= aoPower;
+    //     }
+    //     occ = max(occ, 0.0);
+    //     return occ;
+    // }
+
+    //////////////////////////////
+
+
+	float4 main()
+	{
+        float4 fragColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
+        
+
+        float2 fs = in_screen_size.xy;
+        float2 fc = in_frag_coords.xy;
+
+        // rayOrigin = in_cam_pos.xyz;
+        // rayUp = float3(0.0f, 0.0f, 1.0f);
+        // float3 rf = in_cam_dir.xyz;        
+        // float3 rr = cross(-rf, rayUp);
+
+        rayOrigin = float3(in_cam_pos.x,in_cam_pos.z,in_cam_pos.y);
+        rayUp = float3(0.0f, 1.0f, 0.0f);
+        float3 rf = float3(in_cam_dir.x, in_cam_dir.z, in_cam_dir.y);
+        float3 rr = cross(rf, rayUp);  
+
+
+        float px = (2.0f*(fc.x + 0.5f)/fs.x - 1.0f)*45.0f*(fs.x/fs.y);
+        float py = (2.0f*((fs.y-fc.y) + 0.5f)/fs.y - 1.0f)*45.0f;
+
+        float3 pd = px*rr + py*rayUp + rayOrigin + 90.0f*rf;
+        rayDirection = normalize(pd - rayOrigin);
+
+        float distance;
+        float3 color = render(rayOrigin, rayDirection, distance);        
+        fragColor.xyz = color;   
+
+         if(in_scene_depth.a < distance)
+             fragColor = in_scene_color;        
+        
+        return fragColor;
+    }
+};
+
+RM_SDF rm_SDF;
