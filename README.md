@@ -2,8 +2,6 @@
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/yegCryR3d_E/0.jpg)](http://www.youtube.com/watch?v=yegCryR3d_E "Dimensional Doors VR")
 
-https://www.youtube.com/watch?v=yegCryR3d_E
-
 This was a project I worked on in Fall 2019, it was inspired by Minecraft mod called Dimensional Doors. In the game, we built a few different levels each exploring an interesting idea. 
 
 Our game was built in Unreal 4.23 for the Oculus Rift. It will probably work with the HTC Vive but we haven't tested it.
