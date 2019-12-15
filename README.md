@@ -9,17 +9,15 @@ Our game was built in Unreal 4.23 for the Oculus Rift. It will probably work wit
 # How to play 
 If you want to play the game go up to the top right and click on release, download DimensionalDoors.zip, then click on DimensionalDoors.exe. Hope you like it :smile:
 
-## Lighting
-Once you've done that I'd suggest building the lighting for all the levels, that way you'll see the game how we intended not with the quick rendering, you can do this by clicking the build button at the top. Depending on the level and how fast your game is it can take a few minutes to build the lighting. For reference on my computer (Intel i7-8750H), production lighting and on the Ocean level which is the slowest to load it took 13 minutes.
-To save you time I suggest you build a lower lighting quality on the Ocean level, you can do this by clicking the drop down on the build button going to lighting quality then choose which setting you want. 
-
-Once you're all done with that you can start the game, load up the SpawnMap located in Content/Maps/SpawnMap. Then you can click the drop down next to play (Up at the top of the screen) and select VR Preview.
-
 # Controls 
 To open a door you close your hand and reach for the door knob
+
 Left hand joystick controls movement (walking is relative to the player, not the world)
+
 A increase speed (Upper right hand button)
+
 B decrease speed (Lower right hand button)
+
 Side triggers close your hand
 
 # Levels
