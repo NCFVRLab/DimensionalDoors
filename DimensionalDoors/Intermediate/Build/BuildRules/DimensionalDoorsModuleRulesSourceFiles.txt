@@ -1,1 +1,2 @@
-C:\Users\maddo\VR Stuff\DimensionalDoors\DimensionalDoors\Plugins\OceanPlugin\Source\OceanPlugin\OceanPlugin.Build.cs
+C:\VR Projects\DimensionalDoors\DimensionalDoors\Intermediate\Source\DimensionalDoors.Build.cs
+C:\VR Projects\DimensionalDoors\DimensionalDoors\Intermediate\Source\DimensionalDoors.Target.cs
