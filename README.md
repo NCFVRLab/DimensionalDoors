@@ -4,7 +4,7 @@
 
 This was a project I worked on in Fall 2019, it was inspired by Minecraft mod called Dimensional Doors. In the game, we built a few different levels each exploring an interesting idea. 
 
-Our game was built in Unreal 4.23 for the Oculus Rift. It will probably work with the HTC Vive but we haven't tested it.
+Our game was built in Unreal 4.23 for the Oculus Rift. It will probably work with the HTC Vive but we haven't tested it. Also this project was built on Windows, I have no idea if it'll work for other projects, you might be able to compile it for other operating systems but I don't know if it'll work.
 
 # How to play 
 If you want to play the game go up to the top right and click on release, download DimensionalDoors.zip, then click on DimensionalDoors.exe. Hope you like it :smile:
