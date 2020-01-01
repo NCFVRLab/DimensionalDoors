@@ -2,6 +2,9 @@
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/yegCryR3d_E/0.jpg)](http://www.youtube.com/watch?v=yegCryR3d_E "Dimensional Doors VR")
 
+For detailed and complete write ups, see the Write Ups.
+
+
 This was a project Mei Maddox and William Pembleton worked on in Fall 2019, inspired by a Minecraft mod called Dimensional Doors. In the game, we built a few different levels each exploring an interesting idea. 
 
 Our game was built in Unreal 4.23 for the Oculus Rift. Although untested, we belive it is also compatible for play on the HTC Vive but we haven't tested it. This project was built on Windows, therefore we are unsure if the binaries would need to be recompiled if run on a different operating system.
