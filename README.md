@@ -2,7 +2,7 @@
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/yegCryR3d_E/0.jpg)](http://www.youtube.com/watch?v=yegCryR3d_E "Dimensional Doors VR")
 
-#### For detailed and complete write ups, see the Write Ups.
+#### For detailed information about how the project was made, see the Write Ups folder.
 
 
 This was a project Mei Maddox and William Pembleton worked on in Fall 2019, inspired by a Minecraft mod called Dimensional Doors. In the game, we built a few different levels each exploring an interesting idea. 
