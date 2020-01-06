@@ -29,7 +29,6 @@ Side triggers close your hand
 This level allows players to be in a room where they can just play around with the controls and get comfortable in VR.
 ### Cave 
 Within this level the player is taken to a cave system and is required to navigate across a bridge above bubbling slime, avoiding any holes/missing boards. Should the player accidentally fall through a gap in the bridge or off it entirely, they would hit the slime and trigger their death - respawn at the beginning of the level. 
-
 ### Kitchen
 If you’ve seen the old Alice in Wonderland movie Disney released in 1951 then you might recognize we’re recreating the [Door Scene](https://www.youtube.com/watch?v=di7dZwidXZU). In the scene Alice sees a door that's too small for her to fit through. She then drinks a bottle and shrinks down to a size that's small enough to walk through the door. We recreated that scene in VR where you drink from a bottle and shrink down.
 ### Nothingness
